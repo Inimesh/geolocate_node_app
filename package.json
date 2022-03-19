@@ -1,0 +1,11 @@
+{
+  "name": "node_express_tutorial",
+  "version": "1.0.0",
+  "description": "A follow along of a tutorial by The Coding Train",
+  "main": "index.js",
+  "author": "Inimesh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
