@@ -8,6 +8,20 @@
 </head>
 <body>
   <h1>Hello</h1>
+  <script>
+    if ('geolocation' in navigator) {
+      console.log('geolocation available');
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
+        // console.log(position.coords.latitude);
+        // console.log(position.coords.longitude);
+      });
+    } else {
+      console.log('geolocation not available');
+    }
+
+
+  </script>
   <p>This is an HTML document being served!</p>
   <a href="anotherpage.html">Go to another page!</a>
 </body>
