@@ -7,22 +7,29 @@
   <title>Express Server</title>
 </head>
 <body>
+
   <h1>Hello</h1>
+  <p>This is an HTML document being served!</p>
+  <a href="anotherpage.html">Go to another page!</a>
+  <p>
+    latitude: <span id="latitude"></span>&deg;
+    <br/>
+    longitude: <span id="longitude"></span>&deg;
+  </p>
+
   <script>
     if ('geolocation' in navigator) {
       console.log('geolocation available');
       navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById('latitude').textContent = lat;
+        document.getElementById('longitude').textContent = lon;
         console.log(position);
-        // console.log(position.coords.latitude);
-        // console.log(position.coords.longitude);
       });
     } else {
       console.log('geolocation not available');
     }
-
-
   </script>
-  <p>This is an HTML document being served!</p>
-  <a href="anotherpage.html">Go to another page!</a>
 </body>
 </html>
