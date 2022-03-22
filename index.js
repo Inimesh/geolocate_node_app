@@ -10,7 +10,9 @@ app.use(express.json());
 
 
 app.post('/api', (req, res) => {
-  console.log(req.body);
+  geoDataStore.push(req.body)
+  console.log(geoDataStore);
+
   const res_data = req.body;
   res.json({
     status: "success",
@@ -18,3 +20,5 @@ app.post('/api', (req, res) => {
     longitude: res_data.lon
   })
 })
+
+const geoDataStore = [];
