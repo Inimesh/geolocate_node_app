@@ -33,6 +33,7 @@
       
       const geolocate = () => { 
         navigator.geolocation.getCurrentPosition(position => {
+          // Client side
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
           document.getElementById('latitude').textContent = lat;
@@ -40,6 +41,19 @@
           var marker = L.marker([lat, lon]).addTo(map)
           map.setView([lat, lon], 13)
           console.log(position);
+
+          // Server side
+          const data = {lat, lon};
+          const options = {
+            headers: {
+              'Content-type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(data)
+          }
+          fetch('/api', options).then(res => {
+            res.json().then( json => console.log(json))
+          });
         });
       }
 
