@@ -17,7 +17,8 @@ app.post('/api', (req, res) => {
   res.json({
     status: "success",
     latitude: res_data.lat,
-    longitude: res_data.lon
+    longitude: res_data.lon,
+    timestamp: res_data.timestamp
   })
 })
 
