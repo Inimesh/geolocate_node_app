@@ -28,11 +28,14 @@
   </p>
   <div id="map" style="height: 512px; width: 512px;"></div>
   <script>
+    // Check to see if geolocation via navigator browser API is possible
     if ('geolocation' in navigator) {
       console.log('geolocation available');
       
+      // Create un-tiled map using leaflet package
       var map = L.map('map').setView([51.505, -0.09], 13)
 
+      // request server for mapbox API key and load Mapbox tile styling
       fetch('/mapboxkey').then(res => {
         res.json().then(json => {
           const key = json.key
@@ -47,21 +50,26 @@
         })
       })
 
+      // Geolocate button click callback
       const geolocate = () => { 
         navigator.geolocation.getCurrentPosition(position => {
           // Client side
+          // Get latitude/longitude data and timestamp
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
           const timestamp = position.timestamp;
 
+          // Display data
           document.getElementById('latitude').textContent = lat;
           document.getElementById('longitude').textContent = lon;
+          // Set marker on interactive map
           var marker = L.marker([lat, lon]).addTo(map)
           map.setView([lat, lon], 13)
 
           console.log(position);
 
           // Server side
+          // Send lat/lon + timestamp data to server
           const data = {lat, lon, timestamp};
           const options = {
             headers: {
@@ -76,13 +84,12 @@
         });
       }
 
+      // Event listener for button
       document.getElementById("geolocate-btn").addEventListener("click", geolocate);
       
     } else {
       console.log('geolocation not available');
     }
-
-    
     </script>
 </body>
 </html>
