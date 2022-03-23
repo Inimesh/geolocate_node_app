@@ -1,3 +1,4 @@
 node_modules/
 .env
 geo_data.csv
+database.db

@@ -35,7 +35,7 @@
       // Create un-tiled map using leaflet package
       var map = L.map('map').setView([51.505, -0.09], 13)
 
-      // request server for mapbox API key and load Mapbox tile styling
+      // request server for Mapbox API key and load Mapbox tile styling
       fetch('/mapboxkey').then(res => {
         res.json().then(json => {
           const key = json.key
