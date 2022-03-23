@@ -6,7 +6,8 @@
   "author": "Inimesh",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "nedb": "^1.8.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
