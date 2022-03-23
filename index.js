@@ -19,6 +19,12 @@ app.get('/mapboxkey', (req, res) => {
 app.post('/api', (req, res) => {
   geoDataStore.push(req.body)
   console.log(geoDataStore);
+  
+  try {
+    fd = fs.openSync('./geo_data.csv', 'a');
+  } catch (error) {
+    console.log(error);
+  }
 
   const res_data = req.body;
   res.json({
