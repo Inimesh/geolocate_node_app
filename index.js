@@ -6,21 +6,29 @@ const port = 3000;
 
 const app = express();
 app.listen(port, () => { console.log("Server listening on port " + port) });
-
 app.use(express.static('public'));
 app.use(express.json());
 
+// DATABASE --------------------------------------------------
+const database = new Datastore('database.db');
+database.loadDatabase();
+
+// GET Requests --------------------------------------------------
 app.get('/mapboxkey', (req, res) => {
   res.json({
     key: process.env.MAPBOX_API_KEY
   })
 })
 
+// POST Requests --------------------------------------------------
 app.post('/api', (req, res) => {
-  geoDataStore.push(req.body)
+  const data = req.body;
+  // Adding to Database
+  geoDataStore.push(data);
   console.log(geoDataStore);
   
-  const content = Object.values(req.body).join(",") + "\n"
+  // Saving to .csv file
+  const content = Object.values(data).join(",") + "\n"
   fs.appendFile('./geo_data.csv', content, err => {
     if (err) {
       console.log(err);
@@ -28,15 +36,11 @@ app.post('/api', (req, res) => {
     }
   })
 
-  const res_data = req.body;
   res.json({
     status: "success",
-    latitude: res_data.lat,
-    longitude: res_data.lon,
-    timestamp: res_data.timestamp
+    latitude: data.lat,
+    longitude: data.lon,
+    timestamp: data.timestamp
   })
 })
 
-
-const database = new Datastore('database.db');
-database.loadDatabase();
