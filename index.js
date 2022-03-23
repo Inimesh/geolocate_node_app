@@ -17,30 +17,32 @@ database.loadDatabase();
 app.get('/mapboxkey', (req, res) => {
   res.json({
     key: process.env.MAPBOX_API_KEY
-  })
-})
+  });
+});
 
 // POST Requests --------------------------------------------------
 app.post('/api', (req, res) => {
   const data = req.body;
+
   // Adding to Database
-  geoDataStore.push(data);
-  console.log(geoDataStore);
-  
+  database.insert(data);
+  console.log(`Database: ${database}`);
+
   // Saving to .csv file
-  const content = Object.values(data).join(",") + "\n"
+  const content = Object.values(data).join(",") + "\n";
   fs.appendFile('./geo_data.csv', content, err => {
     if (err) {
       console.log(err);
       return
     }
-  })
+  });
 
+  // Response
   res.json({
     status: "success",
     latitude: data.lat,
     longitude: data.lon,
     timestamp: data.timestamp
-  })
-})
+  });
+});
 
