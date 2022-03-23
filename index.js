@@ -20,11 +20,13 @@ app.post('/api', (req, res) => {
   geoDataStore.push(req.body)
   console.log(geoDataStore);
   
-  try {
-    fd = fs.openSync('./geo_data.csv', 'a');
-  } catch (error) {
-    console.log(error);
-  }
+  const content = Object.values(req.body).join(",") + "\n"
+  fs.appendFile('./geo_data.csv', content, err => {
+    if (err) {
+      console.log(err);
+      return
+    }
+  })
 
   const res_data = req.body;
   res.json({
