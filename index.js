@@ -1,10 +1,10 @@
 const express = require('express');
 const fs = require('fs');
-const app = express();
-
 require('dotenv').config();
+const Datastore = require('nedb');
 const port = 3000;
 
+const app = express();
 app.listen(port, () => { console.log("Server listening on port " + port) });
 
 app.use(express.static('public'));
@@ -38,4 +38,5 @@ app.post('/api', (req, res) => {
 })
 
 
-const geoDataStore = [];
+const database = new Datastore('database.db');
+database.loadDatabase();
