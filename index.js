@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 
+require('dotenv').config();
 const port = 3000;
 
 app.listen(port, () => { console.log("Server listening on port " + port) });
@@ -9,6 +10,11 @@ app.listen(port, () => { console.log("Server listening on port " + port) });
 app.use(express.static('public'));
 app.use(express.json());
 
+app.get('/mapboxkey', (req, res) => {
+  res.json({
+    key: process.env.MAPBOX_API_KEY
+  })
+})
 
 app.post('/api', (req, res) => {
   geoDataStore.push(req.body)
@@ -22,5 +28,6 @@ app.post('/api', (req, res) => {
     timestamp: res_data.timestamp
   })
 })
+
 
 const geoDataStore = [];
