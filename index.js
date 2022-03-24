@@ -39,7 +39,6 @@ app.post('/api', (req, res) => {
 
   // Adding to Database
   database.insert(data);
-  console.log(`Database: ${database}`);
 
   // Saving to .csv file
   const content = Object.values(data).join(",") + "\n";
