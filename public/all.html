@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>All Data</h1>
+  <span>Go back to the main </span><a href="index.html">Geo-locate page</a>
   <ul id="datalist"></ul>
   <script>
     const getData = () => {
@@ -27,8 +28,8 @@
         const timestamp = document.createElement('div');
         const linebreak = document.createElement('br');
 
-        lat.textContent = `Latitude: ${item.lat}`;
-        lon.textContent = `Longitude: ${item.lon}`;
+        lat.textContent = `Latitude: ${item.lat}°`;
+        lon.textContent = `Longitude: ${item.lon}°`;
         const dateString = new Date(item.timestamp).toLocaleString()
         timestamp.textContent = `Time: ${dateString}`;
 
