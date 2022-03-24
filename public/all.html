@@ -8,16 +8,38 @@
 </head>
 <body>
   <h1>All Data</h1>
-
+  <ul id="datalist"></ul>
   <script>
     const getData = () => {
       fetch('/api').then(res => {
-        res.json().then(data => {
-          console.log(data);
+        res.json().then(json => {
+          displayData(json.data)
         });
       });
     }
-    
+
+    const displayData = (dataArr) => {
+      const listContain = document.getElementById('datalist')
+      for (item of dataArr) {
+        const listElem = document.createElement('li');
+        const lat = document.createElement('div');
+        const lon = document.createElement('div');
+        const timestamp = document.createElement('div');
+        const linebreak = document.createElement('br');
+
+        lat.textContent = `Latitude: ${item.lat}`;
+        lon.textContent = `Longitude: ${item.lon}`;
+        timestamp.textContent = `Timestamp: ${item.timestamp}`;
+
+        listElem.appendChild(lat);
+        listElem.appendChild(lon);
+        listElem.appendChild(timestamp);
+        listElem.appendChild(linebreak);
+
+        listContain.appendChild(listElem);
+
+      }
+    }
     getData()
   </script>
 </body>
