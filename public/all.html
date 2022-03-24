@@ -29,15 +29,11 @@
 
         lat.textContent = `Latitude: ${item.lat}`;
         lon.textContent = `Longitude: ${item.lon}`;
-        timestamp.textContent = `Timestamp: ${item.timestamp}`;
+        const dateString = new Date(item.timestamp).toLocaleString()
+        timestamp.textContent = `Time: ${dateString}`;
 
-        listElem.appendChild(lat);
-        listElem.appendChild(lon);
-        listElem.appendChild(timestamp);
-        listElem.appendChild(linebreak);
-
+        listElem.append(lat, lon, timestamp, linebreak);
         listContain.appendChild(listElem);
-
       }
     }
     getData()
