@@ -8,5 +8,17 @@
 </head>
 <body>
   <h1>All Data</h1>
+
+  <script>
+    const getData = () => {
+      fetch('/api').then(res => {
+        res.json().then(data => {
+          console.log(data);
+        });
+      });
+    }
+    
+    getData()
+  </script>
 </body>
 </html>
