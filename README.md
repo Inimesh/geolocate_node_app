@@ -1,4 +1,4 @@
-# Geolocate Node.js Web Application
+# Geo-locate Node.js Web Application
 
 This is my follow along of the tutorial by "The Coding Train" for practicing building a simple node.js server using express, and vanilla JS + HTML for the front end.
 
