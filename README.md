@@ -1,5 +1,6 @@
-# Follow along for node/express server
+# Geolocate Node.js Web Application
 
-This is my follow along of the tutorial by "The Coding Train" for building a simple server using node.js and express.
+This is my follow along of the tutorial by "The Coding Train" for practicing building a simple node.js server using express, and vanilla JS + HTML for the front end.
 
-THe tutorial can be found here: https://www.youtube.com/watch?v=wxbQP1LMZsw
+The web page allows you to find your location using the Navigator geo-locate browser functionality and displays it on an interactive map.
+You can also view a log of all geo-location requests as well as their co-ordinates.
